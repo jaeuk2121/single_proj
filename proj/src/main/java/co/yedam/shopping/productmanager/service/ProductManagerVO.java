@@ -1,7 +1,7 @@
 package co.yedam.shopping.productmanager.service;
 
 import lombok.Data;
-
+//제품관리 		table- product
 @Data
 public class ProductManagerVO {
 	private String productId;
@@ -9,7 +9,7 @@ public class ProductManagerVO {
 	private int productPrice;
 	private String productModel;
 	
-	public String allSelect() {
+	public String toString() {
 		System.out.println("제품 모델: " + productModel);
 		System.out.println("제품 가격: " + productPrice);
 		return null;
