@@ -1,7 +1,7 @@
 package co.yedam.shopping.client.service;
 
 import java.util.List;
-
+//고객
 public interface ClientService {
 	List<ClientVO> clientSelectList();
 	ClientVO clientSelect(ClientVO vo);

@@ -8,13 +8,29 @@
 
 	<select id="clientSelect"
 		resultType="co.yedam.shopping.client.service.ClientVO">
-		SELCT * FROM CLIENT WHERE CLIENT_ID = #{clientId}
+		SELECT * FROM CLIENT WHERE CLIENT_ID = #{clientId}
 	</select>
-	
+
 	<insert id="clientInsert"
 		parameterType="co.yedam.shopping.client.service.ClientVO">
 		INSERT INTO CLIENT
-		VALUES(#{clientId},#{clientPassword},#{clientName},#{clientTel},#{clientAddress})
-		</insert>
-
+		VALUES(#{clientId},#{clientPassword},#{clientName},#{clientTel},#{clientAddress},#{adminCheck})
+	</insert>
+	<delete id="clientDelete"
+		parameterType="co.yedam.shopping.client.service.ClientVO">
+		DELETE FROM CLIENT WHERE CLIENT_ID = #{clientId}
+	</delete>
+	<update id="clientUpdate"
+		parameterType="co.yedam.shopping.client.service.ClientVO">
+		UPDATE CLIENT
+		<set>
+			<if test="clientId !=null">CLIENT_ID = #{clientId},</if>
+			<if test="clientPassword !=null">CLIENT_PASSWORD = #{clientPassword},</if>
+			<if test="clientName !=null">CLIENT_NAME = #{clientName},</if>
+			<if test="clientTel !=null">CLIENT_Tel = #{clientTel},</if>
+			<if test="clientAddress !=null">CLIENT_ADDRESS = #{clientAddress},</if>
+			<if test="adminCheck !=null">ADMIN_CHECK = #{adminCheck}</if>
+		</set>
+		WHERE CLIENT_ID = #{clientId}
+	</update>
 </mapper>
