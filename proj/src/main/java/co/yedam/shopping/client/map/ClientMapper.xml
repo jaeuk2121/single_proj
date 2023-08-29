@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.shopping.client.map.ClientMapper">
+	<select id="clientSelectList"
+		resultType="co.yedam.shopping.client.service.ClientVO">
+		SELECT * FROM CLIENT
+	</select>
+
+	<select id="clientSelect"
+		resultType="co.yedam.shopping.client.service.ClientVO">
+		SELCT * FROM CLIENT WHERE CLIENT_ID = #{clientId}
+	</select>
+	
+	<insert id="clientInsert"
+		parameterType="co.yedam.shopping.client.service.ClientVO">
+		INSERT INTO CLIENT
+		VALUES(#{productId},#{productName},#{productPrice},#{productModel},#{productCount},#{productColor})
+		</insert>
+
+</mapper>

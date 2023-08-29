@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.shopping.common.DataSource;
 import co.yedam.shopping.productmanager.map.ProductManagerMapper;
+import co.yedam.shopping.productmanager.service.ProductManagerService;
 import co.yedam.shopping.productmanager.service.ProductManagerVO;
-import resources.ProductManagerService;
 
 public class ProductManagerServiceImpl implements ProductManagerService {
 	

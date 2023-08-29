@@ -80,7 +80,7 @@ public class ProductManager { // 제품관리 메뉴
 		if( n != 0) {
 			System.out.println("제품 정보 변경이 성공했습니다.");
 		}else {
-			System.out.println("제품 정보 변경이 성공했습니다.");
+			System.out.println("제품 정보 변경이 실패했습니다.");
 		}
 		
 	}

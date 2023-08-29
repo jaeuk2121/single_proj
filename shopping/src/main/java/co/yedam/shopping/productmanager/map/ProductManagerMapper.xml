@@ -15,7 +15,7 @@
 	<insert id="productInsert"
 		parameterType="co.yedam.shopping.productmanager.service.ProductManagerVO">
 		INSERT INTO PRODUCT
-		VALUES(#{productId},#{productName},#{productModel},#{productColor},#{productPrice},#{productCount},#{ProductSale})
+		VALUES(#{productId},#{productName},#{productModel},#{productColor},#{productPrice},#{productCount},#{productSale})
 	</insert>
 
 	<delete id="productDelete"
@@ -25,24 +25,17 @@
 
 	<update id="productUpdate"
 		parameterType="co.yedam.shopping.productmanager.service.ProductManagerVO">
-		update PRODUCT SET
-			PRODUCT_ID = #{productId},
-			PRODUCT_NAME = #{productName},
-			PRODUCT_MODEL = #{productModel},
-			PRODUCT_COLOR = #{productColor}.
-			PRODUCT_PRICE = #{productPrice},
-			PRODUCT_COUNT = #{productCount},
-			PRODUCT_SALE = #{productSale},
-		WHERE PRODUCT_ID = #{productId}	
+		UPDATE PRODUCT
+		<set>
+			<if test="productId !=Null">PRODUCT_ID = #{productId},</if>
+			<if test="productName !=Null">PRODUCT_NAME = #{productName},</if>
+			<if test="productModel !=Null">PRODUCT_MODEL = #{productModel},</if>
+			<if test="productColor !=Null">PRODUCT_COLOR = #{productColor},</if>
+			<if test="productPrice !=0">PRODUCT_PRICE = #{productPrice},</if>
+			<if test="productCount !=0">PRODUCT_COUNT = #{productCount},</if>
+			<if test="productSale !=0">PRODUCT_SALE = #{productSale}</if>
+		</set>
+		WHERE PRODUCT_ID = #{productId}
 	</update>
-
-
-
-
-
-
-
-
-
 
 </mapper>
