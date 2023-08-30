@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="co.yedam.shopping.clientbox.map.ClientBoxMapper">
+	<select id="clientBoxSelectList"
+		resultType="co.yedam.shopping.clientbox.service.ClientBoxVO">
+		SELECT * FROM CLIENTBOX WHERE PRODUCT_COUNT IS NOT NULL
+	</select>
+
+	<select id="clientBoxSelect"
+		resultType="co.yedam.shopping.clientbox.service.ClientBoxVO">
+		SELECT * FROM CLIENTBOX WHERE PRODUCT_ID = #{productId}
+	</select>
+
+	<insert id="clientBoxInsert"
+		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO">
+		INSERT INTO CLIENTBOX(PRODUCT_MODEL, PRODUCT_PRICE, PRODUCT_ID)
+		SELECT P.PRODUCT_MODEL, P.PRODUCT_PRICE, P.PRODUCT_ID
+		FROM PRODUCT P LEFT JOIN CLIENTBOX C
+		ON P.PRODUCT_MODEL = C.PRODUCT_MODEL
+		WHERE C.PRODUCT_ID = #{productId} IS NULL;
+	</insert>
+	<delete id="clientBoxDelete"
+		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO">
+		DELETE FROM CLIENTBOX WHERE PRODUCT_ID = #{clientID}
+	</delete>
+	<update id="clientBoxUpdate"
+		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO">
+		UPDATE CLIENTBOX
+		<set>
+			<if test="productId !=null">PRODUCT_ID = #{productId},</if>
+			<if test="quantity !=0">QUANTITY = #{quantity}</if>
+		</set>
+		WHERE PRODUCT_ID =#{productId}
+	</update>
+
+</mapper>

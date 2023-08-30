@@ -1,7 +1,5 @@
 package co.yedam.shopping.client.menu;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,15 +11,6 @@ import co.yedam.shopping.client.serviceImpl.ClientServiceImpl;
 public class ClientMenu {
 	private Scanner scn = new Scanner(System.in);
 	ClientService dao = new ClientServiceImpl();
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user = "jaeuk";
-	String password = "1234";
-	String strdriver = "oracle.jdbc.driver.OracleDriver";
-	String sql;
-	int result;
-
-	Connection conn = null;
-	PreparedStatement pstmt = null;
 
 	private void mainTitle() {
 		System.out.println(" 고 객 관 리 ");
@@ -82,63 +71,50 @@ public class ClientMenu {
 	}
 
 	private void clientUpdate() {
-		boolean b = true;
 		ClientVO vo = new ClientVO();
 		System.out.println("수정할 고객의 아이디를 입력");
 		vo.setClientId(scn.nextLine());
+		subtitle();
+		int key = scn.nextInt();
+		scn.nextLine();
+		switch (key) {
 
-		while (b) {
-			subtitle();
-			int key = scn.nextInt();
-			scn.nextLine();
-			switch (key) {
-			case 1:
-				System.out.println(vo.getClientName());
-				System.out.println("변경하실 아이디를 입력하세요.");
-				vo.setClientId(scn.nextLine());
-				break;
-			case 2:
-				System.out.println("변경하실 패스워드를 입력하세요");
-				vo.setClientPassword(scn.nextLine());
-				break;
-			case 3:
-				System.out.println("변경하실 이름을 입력하세요");
-				vo.setClientName(scn.nextLine());
-				break;
-			case 4:
-				System.out.println("변경하실 전화번호를 입력하세요");
-				vo.setClientTel(scn.nextLine());
-				break;
-			case 5:
-				System.out.println("변경하실 주소를 입력하세요");
-				vo.setClientAddress(scn.nextLine());
-				break;
-			case 6:
-				System.out.println("종료");
-				b = false;
+		case 1:
+			System.out.println("변경하실 패스워드를 입력하세요");
+			vo.setClientPassword(scn.nextLine());
+			break;
+		case 2:
+			System.out.println("변경하실 이름을 입력하세요");
+			vo.setClientName(scn.nextLine());
+			break;
+		case 3:
+			System.out.println("변경하실 전화번호를 입력하세요");
+			vo.setClientTel(scn.nextLine());
+			break;
+		case 4:
+			System.out.println("변경하실 주소를 입력하세요");
+			vo.setClientAddress(scn.nextLine());
+			break;
 
-			}
-			int n = dao.clientUpdate(vo);
-			if (n != 0) {
-				System.out.println("고객 정보 변경이 성공했습니다.");
-				b = false;
-			} else {
-				System.out.println("고객 정보 변경이 실패했습니다.");
-				b = false;
-			}
 		}
+		int n = dao.clientUpdate(vo);
+		if (n != 0) {
+			System.out.println("고객 정보 변경이 성공했습니다.");
 
+		} else {
+			System.out.println("고객 정보 변경이 실패했습니다.");
+
+		}
 	}
 
 	private void subtitle() {
 		System.out.println("수정할 항목번호를 선택하세요");
 		System.out.println("---------------------");
-		System.out.println("1. 아이디");
-		System.out.println("2. 비밀번호");
-		System.out.println("3. 이름");
-		System.out.println("4. 전화번호");
-		System.out.println("5. 주소");
-		System.out.println("6. 종료");
+		System.out.println("1. 비밀번호");
+		System.out.println("2. 이름");
+		System.out.println("3. 전화번호");
+		System.out.println("4. 주소");
+		System.out.println("5. 종료");
 		System.out.println("---------------------");
 		System.out.println("입력>>");
 

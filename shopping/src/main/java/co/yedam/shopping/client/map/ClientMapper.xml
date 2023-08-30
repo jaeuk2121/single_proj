@@ -24,7 +24,6 @@
 		parameterType="co.yedam.shopping.client.service.ClientVO">
 		UPDATE CLIENT
 		<set>
-			<if test="clientId !=null">CLIENT_ID = #{clientId},</if>
 			<if test="clientPassword !=null">CLIENT_PASSWORD = #{clientPassword},</if>
 			<if test="clientName !=null">CLIENT_NAME = #{clientName},</if>
 			<if test="clientTel !=null">CLIENT_Tel = #{clientTel},</if>
