@@ -43,6 +43,7 @@ public class ClientBoxMenu {
 				clientBoxList();
 				break;
 			case 3:
+				
 				clientBoxInsert();
 				break;
 			case 4:
@@ -62,6 +63,7 @@ public class ClientBoxMenu {
 
 	private void clientBoxInsert() {
 		ClientBoxVO vo = new ClientBoxVO();
+		
 
 		System.out.println("장바구니에 넣을 상품코드를 입력하세요");
 		vo.setProductId(scn.nextLine());

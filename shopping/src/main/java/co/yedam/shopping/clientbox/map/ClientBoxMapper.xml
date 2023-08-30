@@ -18,7 +18,7 @@
 		SELECT P.PRODUCT_MODEL, P.PRODUCT_PRICE, P.PRODUCT_ID
 		FROM PRODUCT P LEFT JOIN CLIENTBOX C
 		ON P.PRODUCT_MODEL = C.PRODUCT_MODEL
-		WHERE C.PRODUCT_ID = #{productId} IS NULL;
+		WHERE p.PRODUCT_ID = #{productId}
 	</insert>
 	<delete id="clientBoxDelete"
 		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO">
