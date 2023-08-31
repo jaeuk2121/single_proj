@@ -37,5 +37,12 @@ public class ClientBoxServiceImpl implements ClientBoxService {
 	public int clientBoxUpdate(ClientBoxVO vo) {
 		return map.clientBoxUpdate(vo);
 	}
+	@Override
+	public int boxCountUpdate(ClientBoxVO vo) {
+		return map.boxCountUpdate(vo);
+	}
+	public int allDelete(ClientBoxVO vo) {
+		return map.allDelete(vo);
+	}
 
 }

@@ -39,6 +39,8 @@ public class MainMenu {
 				managerLogin();
 				break;
 			case 4:
+				b=true;
+				break;
 			}
 		} while (!b);
 	}
@@ -50,10 +52,10 @@ public class MainMenu {
 		vo.setClientId(scn.nextLine());
 		System.out.println("비밀번호를 입력해주세요.");
 		vo.setClientPassword(scn.nextLine());
-
+		String vopw = vo.getClientPassword();
 		vo = dao.clientSelect(vo);
 
-		if (vo != null) {
+		if (vo != null && vo.getClientPassword().equals(vopw)) {
 			System.out.println(vo.getClientName() + "님 환영합니다.");
 			
 			cbm.run();

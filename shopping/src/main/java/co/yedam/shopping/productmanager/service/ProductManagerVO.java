@@ -14,10 +14,11 @@ public class ProductManagerVO {
 	
 	public String simpleView() {
 		System.out.println("-----------------------------------------------------------------");
+		int value = productPrice*productSale/100;
 		System.out.printf("제품 코드: " + productId);
 		System.out.println(" | 제품 모델: " + productModel);
 		System.out.printf(" | 제품 색상: " + productColor);
-		System.out.printf(" | 제품 가격: " + productPrice +"원");
+		System.out.printf(" | 제품 가격: " + (productPrice-value) +"원");
 		System.out.printf(" | 제품 재고: " + productCount +"개");
 		System.out.println();
 		System.out.println("-----------------------------------------------------------------");

@@ -12,6 +12,8 @@ public interface ClientBoxMapper {
 	int clientBoxInsert(ClientBoxVO vo);
 	int clientBoxDelete(ClientBoxVO vo);
 	int clientBoxUpdate(ClientBoxVO vo);
+	int boxCountUpdate(ClientBoxVO vo);
+	int allDelete(ClientBoxVO vo);
 
 	
 }

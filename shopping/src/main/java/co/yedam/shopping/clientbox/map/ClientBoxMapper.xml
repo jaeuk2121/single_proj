@@ -7,31 +7,53 @@
 		SELECT * FROM CLIENTBOX WHERE PRODUCT_COUNT IS NOT NULL
 	</select>
 
+
+
+	<insert id="clientBoxInsert"
+		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO">
+		INSERT INTO CLIENTBOX(PRODUCT_MODEL, PRODUCT_PRICE,
+		PRODUCT_ID)
+		SELECT P.PRODUCT_MODEL, P.PRODUCT_PRICE, P.PRODUCT_ID
+		FROM
+		PRODUCT P LEFT JOIN CLIENTBOX C
+		ON P.PRODUCT_MODEL = C.PRODUCT_MODEL
+		WHERE p.PRODUCT_ID = #{productId}
+	</insert>
+
+
+	<delete id="clientBoxDelete"
+		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO">
+		DELETE
+		FROM CLIENTBOX
+		WHERE PRODUCT_ID = #{productId}
+	</delete>
+	
+	<delete id="allDelete"
+		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO">
+		DELETE FROM CLIENTBOX
+	</delete>
+
+	<update id="clientBoxUpdate"
+		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO">
+		UPDATE CLIENTBOX 
+		SET PRODUCT_COUNT = #{productCount}
+		WHERE PRODUCT_ID = #{productId}
+	</update>
+
 	<select id="clientBoxSelect"
+		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO"
 		resultType="co.yedam.shopping.clientbox.service.ClientBoxVO">
 		SELECT * FROM CLIENTBOX WHERE PRODUCT_ID = #{productId}
 	</select>
 
-	<insert id="clientBoxInsert"
-		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO">
-		INSERT INTO CLIENTBOX(PRODUCT_MODEL, PRODUCT_PRICE, PRODUCT_ID)
-		SELECT P.PRODUCT_MODEL, P.PRODUCT_PRICE, P.PRODUCT_ID
-		FROM PRODUCT P LEFT JOIN CLIENTBOX C
-		ON P.PRODUCT_MODEL = C.PRODUCT_MODEL
-		WHERE p.PRODUCT_ID = #{productId}
-	</insert>
-	<delete id="clientBoxDelete"
-		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO">
-		DELETE FROM CLIENTBOX WHERE PRODUCT_ID = #{clientID}
-	</delete>
-	<update id="clientBoxUpdate"
+	<update id="boxCountUpdate"
 		parameterType="co.yedam.shopping.clientbox.service.ClientBoxVO">
 		UPDATE CLIENTBOX
 		<set>
-			<if test="productId !=null">PRODUCT_ID = #{productId},</if>
-			<if test="quantity !=0">QUANTITY = #{quantity}</if>
+			<if test="productCount !=0">PRODUCT_COUNT = #{productCount},</if>
 		</set>
-		WHERE PRODUCT_ID =#{productId}
+		WHERE PRODUCT_ID = #{productId}
 	</update>
+
 
 </mapper>
